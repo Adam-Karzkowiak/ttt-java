@@ -1,10 +1,13 @@
 package app.tictac;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 class TicTacToe {
     private static final Scanner scanner = new Scanner(System.in);
+    private static int numberOfMoves = 0;
+    private static ArrayList<Integer> usedNumbers = new ArrayList<>();
     private static final char[][] board = {{' ', '|', ' ', '|', ' '},
             {'-', '+', '-', '+', '-'},
             {' ', '|', ' ', '|', ' '},
@@ -51,6 +54,8 @@ class TicTacToe {
         if (move == 9) {
             board[4][4] = 'X';
         }
+        usedNumbers.add(move);
+        numberOfMoves++;
     }
 
     private static void aiMove(char[][] board) {
@@ -83,13 +88,20 @@ class TicTacToe {
         if (move == 9) {
             board[4][4] = 'O';
         }
+        numberOfMoves++;
+        usedNumbers.add(move);
+    }
+
+    public static void playAGame() {
+        while (numberOfMoves < 10) {
+            printBoard(board);
+            playerMove(board);
+            printBoard(board);
+            aiMove(board);
+        }
     }
 
     public static void main(String[] args) {
-        printBoard(board);
-        playerMove(board);
-        printBoard(board);
-        aiMove(board);
-        printBoard(board);
+        playAGame();
     }
 }
