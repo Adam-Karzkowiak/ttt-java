@@ -3,8 +3,8 @@ package app.tictac;
 import java.util.Scanner;
 
 class TicTacToe {
-    private static Scanner scanner = new Scanner(System.in);
-    private static char[][] board = {{' ', '|', ' ', '|', ' '},
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final char[][] board = {{' ', '|', ' ', '|', ' '},
             {'-', '+', '-', '+', '-'},
             {' ', '|', ' ', '|', ' '},
             {'-', '+', '-', '+', '-'},
@@ -19,14 +19,42 @@ class TicTacToe {
             System.out.println();
         }
     }
-//        [00],[02],[04]
-//        [20],[22],[24]
-//        [40],[42],[44]
+
+
+    private static void playerMove(char[][] board) {
+        int move = scanner.nextInt();
+        if (move == 1) {
+            board[0][0] = 'X';
+        }
+        if (move == 2) {
+            board[0][02] = 'X';
+        }
+        if (move == 3) {
+            board[0][4] = 'X';
+        }
+        if (move == 4) {
+            board[2][0] = 'X';
+        }
+        if (move == 5) {
+            board[2][2] = 'X';
+        }
+        if (move == 6) {
+            board[2][4] = 'X';
+        }
+        if (move == 7) {
+            board[4][0] = 'X';
+        }
+        if (move == 8) {
+            board[4][2] = 'X';
+        }
+        if (move == 9) {
+            board[4][4] = 'X';
+        }
+    }
 
     public static void main(String[] args) {
         printBoard(board);
-        int player =scanner.nextInt();
-
+        playerMove(board);
         printBoard(board);
     }
 }
