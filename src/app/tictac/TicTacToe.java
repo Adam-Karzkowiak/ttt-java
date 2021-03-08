@@ -105,6 +105,10 @@ class TicTacToe {
         }
     }
 
+    public static void winingCondition() {
+
+    }
+
     public static void main(String[] args) {
         playAGame();
     }
