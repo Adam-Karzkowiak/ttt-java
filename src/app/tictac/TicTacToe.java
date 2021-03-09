@@ -54,6 +54,7 @@ class TicTacToe {
         if (move == 9) {
             board[4][4] = 'X';
         }
+        winingCondition();
         usedNumbers.add(move);
         numberOfMoves++;
     }
@@ -97,16 +98,53 @@ class TicTacToe {
     }
 
     public static void playAGame() {
-        while (numberOfMoves < 10) {
+        boolean endOfAGame = false;
+        while (!endOfAGame && numberOfMoves < 10) {
             printBoard(board);
             playerMove(board);
             printBoard(board);
             aiMove(board);
+            endOfAGame = winingCondition();
         }
+
     }
 
-    public static void winingCondition() {
+    public static boolean winingCondition() {
+        String won = "Player won!";
+        if (board[0][0] == 'X' && board[0][2] == 'X' && board[0][4] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[2][0] == 'X' && board[2][2] == 'X' && board[2][4] == 'X') {
+            System.out.println(won);
+            return true;
+        }
 
+        if (board[4][0] == 'X' && board[4][2] == 'X' && board[4][4] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[0][0] == 'X' && board[2][2] == 'X' && board[4][4] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[0][4] == 'X' && board[2][2] == 'X' && board[4][0] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[0][0] == 'X' && board[2][0] == 'X' && board[4][0] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[0][2] == 'X' && board[2][2] == 'X' && board[4][2] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        if (board[0][4] == 'X' && board[2][4] == 'X' && board[4][4] == 'X') {
+            System.out.println(won);
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
