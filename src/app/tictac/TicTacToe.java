@@ -1,5 +1,7 @@
 package app.tictac;
 
+import app.tictac.conditions.PlayerWiningCondition;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -54,7 +56,7 @@ class TicTacToe {
         if (move == 9) {
             board[4][4] = 'X';
         }
-        winingConditionPlayer();
+        PlayerWiningCondition.winingConditionPlayer(board);
         usedNumbers.add(move);
         numberOfMoves++;
     }
@@ -97,57 +99,22 @@ class TicTacToe {
         }
     }
 
-    public static void playAGame() {
+    public static void playAGame() throws InterruptedException {
         boolean endOfAGame = false;
         while (!endOfAGame && numberOfMoves < 10) {
             printBoard(board);
             playerMove(board);
+            Thread.sleep(1000);
             printBoard(board);
             aiMove(board);
-            endOfAGame = winingConditionPlayer();
+            Thread.sleep(1000);
+            endOfAGame = PlayerWiningCondition.winingConditionPlayer(board);
         }
 
     }
 
-    public static boolean winingConditionPlayer() {
-        String won = "Player won!";
-        if (board[0][0] == 'X' && board[0][2] == 'X' && board[0][4] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[2][0] == 'X' && board[2][2] == 'X' && board[2][4] == 'X') {
-            System.out.println(won);
-            return true;
-        }
 
-        if (board[4][0] == 'X' && board[4][2] == 'X' && board[4][4] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[0][0] == 'X' && board[2][2] == 'X' && board[4][4] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[0][4] == 'X' && board[2][2] == 'X' && board[4][0] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[0][0] == 'X' && board[2][0] == 'X' && board[4][0] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[0][2] == 'X' && board[2][2] == 'X' && board[4][2] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        if (board[0][4] == 'X' && board[2][4] == 'X' && board[4][4] == 'X') {
-            System.out.println(won);
-            return true;
-        }
-        return false;
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         playAGame();
     }
 }
