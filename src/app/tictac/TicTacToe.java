@@ -54,7 +54,7 @@ class TicTacToe {
         if (move == 9) {
             board[4][4] = 'X';
         }
-        winingCondition();
+        winingConditionPlayer();
         usedNumbers.add(move);
         numberOfMoves++;
     }
@@ -104,12 +104,12 @@ class TicTacToe {
             playerMove(board);
             printBoard(board);
             aiMove(board);
-            endOfAGame = winingCondition();
+            endOfAGame = winingConditionPlayer();
         }
 
     }
 
-    public static boolean winingCondition() {
+    public static boolean winingConditionPlayer() {
         String won = "Player won!";
         if (board[0][0] == 'X' && board[0][2] == 'X' && board[0][4] == 'X') {
             System.out.println(won);
