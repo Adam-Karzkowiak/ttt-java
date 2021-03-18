@@ -5,10 +5,8 @@ import app.tictac.moves.AIMove;
 import app.tictac.moves.PlayerMove;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 class TicTacToe {
-    private static final Scanner scanner = new Scanner(System.in);
     private static int numberOfMoves = 0;
     private static ArrayList<Integer> usedNumbers = new ArrayList<>();
     private static final char[][] board = {{' ', '|', ' ', '|', ' '},
