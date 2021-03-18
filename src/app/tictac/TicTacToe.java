@@ -1,9 +1,10 @@
 package app.tictac;
 
 import app.tictac.conditions.PlayerWiningCondition;
+import app.tictac.moves.AIMove;
+import app.tictac.moves.PlayerMove;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 class TicTacToe {
@@ -27,86 +28,14 @@ class TicTacToe {
     }
 
 
-    private static void playerMove(char[][] board) {
-        int move = scanner.nextInt();
-        if (move == 1) {
-            board[0][0] = 'X';
-        }
-        if (move == 2) {
-            board[0][2] = 'X';
-        }
-        if (move == 3) {
-            board[0][4] = 'X';
-        }
-        if (move == 4) {
-            board[2][0] = 'X';
-        }
-        if (move == 5) {
-            board[2][2] = 'X';
-        }
-        if (move == 6) {
-            board[2][4] = 'X';
-        }
-        if (move == 7) {
-            board[4][0] = 'X';
-        }
-        if (move == 8) {
-            board[4][2] = 'X';
-        }
-        if (move == 9) {
-            board[4][4] = 'X';
-        }
-        PlayerWiningCondition.winingConditionPlayer(board);
-        usedNumbers.add(move);
-        numberOfMoves++;
-    }
-
-    private static void aiMove(char[][] board) {
-        Random random = new Random();
-        int move = random.nextInt(9) + 1;
-        if (!usedNumbers.contains(move)) {
-            if (move == 1) {
-                board[0][0] = 'O';
-            }
-            if (move == 2) {
-                board[0][2] = 'O';
-            }
-            if (move == 3) {
-                board[0][4] = 'O';
-            }
-            if (move == 4) {
-                board[2][0] = 'O';
-            }
-            if (move == 5) {
-                board[2][2] = 'O';
-            }
-            if (move == 6) {
-                board[2][4] = 'O';
-            }
-            if (move == 7) {
-                board[4][0] = 'O';
-            }
-            if (move == 8) {
-                board[4][2] = 'O';
-            }
-            if (move == 9) {
-                board[4][4] = 'O';
-            }
-            numberOfMoves++;
-            usedNumbers.add(move);
-        } else {
-            aiMove(board);
-        }
-    }
-
     public static void playAGame() throws InterruptedException {
         boolean endOfAGame = false;
         while (!endOfAGame && numberOfMoves < 10) {
             printBoard(board);
-            playerMove(board);
+            PlayerMove.move(board, usedNumbers, numberOfMoves);
             Thread.sleep(1000);
             printBoard(board);
-            aiMove(board);
+            AIMove.move(board, usedNumbers, numberOfMoves);
             Thread.sleep(1000);
             endOfAGame = PlayerWiningCondition.winingConditionPlayer(board);
         }
